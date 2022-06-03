@@ -96,6 +96,10 @@
                 {
                     "name": "keyword.control.psuedoInstruction",
                     "match": "\\b((d|res)[bwdqtoyz]|equ|times)\\b"
+                },
+                {
+                    "name": "keyword.operator",
+                    "match": "(==?|!=|<=?>|<=?|>=?|\\|\\|?|\\^\\^?|&&?|<<<?|>>>?|~|!|\\+|-|\\*|//?|%%?)|\\bseg\\b"
                 }
             ]
         },
