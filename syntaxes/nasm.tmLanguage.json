@@ -19,6 +19,9 @@
     },
     {
       "include": "#directives"
+    },
+    {
+      "include": "#strings"
     }
   ],
   "repository": {
@@ -82,6 +85,32 @@
         {
           "name": "keyword.control.directive.primitive",
           "match": "\\bwarning\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted",
+      "patterns": [
+        {
+          "name": "string.quoted.double",
+          "begin": "\"",
+          "end": "\""
+        },
+        {
+          "name": "string.quoted.single",
+          "begin": "'",
+          "end": "'"
+        },
+        {
+          "name": "string.quoted.other.backtick",
+          "begin": "`",
+          "end": "`",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\('|\"|`|\\\\|\\?|[abtnvfre]|[0-7]{3}|x[\\da-fA-F]{2}|u[\\da-fA-F]{4}|U[\\da-fA-F]{8})"
+            }
+          ]
         }
       ]
     }
