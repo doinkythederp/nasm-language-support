@@ -13,6 +13,9 @@
     },
     {
       "include": "#labels"
+    },
+    {
+      "include": "#sizeModifiers"
     }
   ],
   "repository": {
@@ -33,6 +36,10 @@
     "labels": {
       "name": "variable.label",
       "match": "^\\s*\\w+:"
+    },
+    "sizeModifiers": {
+      "name": "keyword.operator.size",
+      "match": "\\b(byte|word|dword|qword|tword|oword|yword|zword)\\b"
     }
   },
   "scopeName": "source.nasm"
