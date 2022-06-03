@@ -50,6 +50,38 @@
         {
           "name": "storage.modifier.visibility",
           "match": "\\b(global|extern|common|static)\\b"
+        },
+        {
+          "name": "keyword.control.directive.bits",
+          "match": "\\b(bits(\\s+(16|32|64))?|use(16|32))\\b"
+        },
+        {
+          "name": "keyword.control.directive.default",
+          "match": "\\bdefault(\\s+(rel|abs|bnd|nobnd))?\\b"
+        },
+        {
+          "name": "keyword.control.directive.section",
+          "match": "\\b(section|segment)\\b"
+        },
+        {
+          "name": "keyword.control.directive.absolute",
+          "match": "\\babsolute\\b"
+        },
+        {
+          "name": "keyword.control.directive.prefix",
+          "match": "\\b(g|l)?(pre|post)fix\\b"
+        },
+        {
+          "name": "keyword.control.directive.cpu",
+          "match": "\\bcpu(\\s+\\w+)?\\b"
+        },
+        {
+          "name": "keyword.control.directive.float",
+          "match": "\\bfloat(\\s+((no)?daz|near|down|up|zero|default))?\\b"
+        },
+        {
+          "name": "keyword.control.directive.primitive",
+          "match": "\\bwarning\\b"
         }
       ]
     }
