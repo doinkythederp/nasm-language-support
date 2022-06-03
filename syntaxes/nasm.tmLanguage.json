@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "variable.label",
-                    "match": "^\\s*\\w+:"
+                    "match": "^\\s*[\\w\\.\\$#@~\\?]+:"
                 },
                 {
                     "name": "keyword.control.directive",
@@ -67,7 +67,7 @@
                     ]
                 },
                 {
-                    "begin": "([a-zA-Z_\\?0-9]+)\\(",
+                    "begin": "([\\w\\.\\$#@~\\?]+)\\(",
                     "beginCaptures": {
                         "1": {
                             "name": "variable.macro"
@@ -82,7 +82,7 @@
                 },
                 {
                     "name": "keyword.other.preprocessor",
-                    "match": "^\\s*%(?:define|macro)\\s+([a-zA-Z_\\?0-9]+)\\s*",
+                    "match": "^\\s*%(?:define|macro)\\s+([\\w\\.\\$#@~\\?]+)\\s*",
                     "captures": {
                         "1": {
                             "name": "variable.macro"

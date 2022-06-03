@@ -76,7 +76,7 @@
     },
     "onEnterRules": [
         {
-            "beforeText": "^\\s*(section.*|\\w+:)\\s*(;.*)?$",
+            "beforeText": "^\\s*(section.*|[\\w\\.\\$#@~\\?]+:)\\s*(;.*)?$",
             "action": {
                 "indent": "indent"
             }
