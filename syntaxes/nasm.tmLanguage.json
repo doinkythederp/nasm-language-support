@@ -92,6 +92,10 @@
                 {
                     "name": "keyword.other.preprocessor",
                     "match": "^\\s*%\\w+\\b"
+                },
+                {
+                    "name": "keyword.control.psuedoInstruction",
+                    "match": "\\b((d|res)[bwdqtoyz]|equ|times)\\b"
                 }
             ]
         },
