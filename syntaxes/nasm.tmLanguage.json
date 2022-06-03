@@ -16,6 +16,9 @@
     },
     {
       "include": "#sizeModifiers"
+    },
+    {
+      "include": "#visibility"
     }
   ],
   "repository": {
@@ -40,6 +43,10 @@
     "sizeModifiers": {
       "name": "keyword.operator.size",
       "match": "\\b(byte|word|dword|qword|tword|oword|yword|zword)\\b"
+    },
+    "visibility": {
+      "name": "storage.modifier.visibility",
+      "match": "\\b(global|extern|common|static)\\b"
     }
   },
   "scopeName": "source.nasm"
