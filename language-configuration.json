@@ -68,17 +68,17 @@
     ]
   ],
   "folding": {
-    "offSide": true,
     "markers": {
       "start": "^\\s*;\\s*#region\\b",
       "end": "^\\s*;\\s*#endregion\\b"
-    }
+    },
+    "offSide": true
   },
   "onEnterRules": [
     {
-      "beforeText": "^\\s*(section.*|\\w+:)\\s*(;.*)$",
+      "beforeText": "^\\s*(section.*|\\w+:)\\s*(;.*)?$",
       "action": {
-        "indent": "indentOutdent"
+        "indent": "indent"
       }
     }
   ]
