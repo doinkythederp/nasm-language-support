@@ -111,6 +111,11 @@
                     "match": "\\b(r(8|9|1[0-5])[d|w|b]?|(al|cl|dl|bl|sil|dil|spl|bpl)|(r|e|)(ax|cx|dx|bx|si|di|sp|bp))\\b"
                 },
                 {
+                    "name": "variable.language.nasm",
+                    "comment": "built-in variables",
+                    "match": "(?<=[^\\w\\$]|^)(\\$\\$?)(?=\\W|$)"
+                },
+                {
                     "name": "keyword.operator.size",
                     "match": "\\b(byte|word|dword|qword|tword|oword|yword|zword)\\b"
                 },
