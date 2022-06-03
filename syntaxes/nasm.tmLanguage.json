@@ -22,6 +22,9 @@
     },
     {
       "include": "#strings"
+    },
+    {
+      "include": "#numbers"
     }
   ],
   "repository": {
@@ -113,6 +116,10 @@
           ]
         }
       ]
+    },
+    "numbers": {
+      "name": "constant.numeric",
+      "match": "(?<=\\W|^)[+-]?(0d\\d[\\d_]*|0[hx][\\da-fA-F][\\da-fA-F_]*|0[oq][0-7][0-7_]*|[10][10_]*[by]|0[by][10][10_]*|[\\da-fA-F][\\da-fA-F_]*h|\\$0[\\da-fA-F][\\da-fA-F_]*|[0-7][0-7_]*[qo]|\\d[\\d_]*d?)"
     }
   },
   "scopeName": "source.nasm"
