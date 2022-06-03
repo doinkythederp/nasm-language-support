@@ -1,85 +1,85 @@
 {
-  "comments": {
-    "lineComment": ";"
-  },
-  "brackets": [
-    [
-      "[",
-      "]"
-    ],
-    [
-      "(",
-      ")"
-    ]
-  ],
-  "autoClosingPairs": [
-    [
-      "[",
-      "]"
-    ],
-    [
-      "(",
-      ")"
-    ],
-    [
-      "\"",
-      "\""
-    ],
-    [
-      "'",
-      "'"
-    ],
-    [
-      "`",
-      "`"
-    ]
-  ],
-  "surroundingPairs": [
-    [
-      "[",
-      "]"
-    ],
-    [
-      "(",
-      ")"
-    ],
-    [
-      "\"",
-      "\""
-    ],
-    [
-      "'",
-      "'"
-    ],
-    [
-      "`",
-      "`"
-    ]
-  ],
-  "autoCloseBefore": ";:.,=])> \n\t",
-  "colorizedBracketPairs": [
-    [
-      "(",
-      ")"
-    ],
-    [
-      "[",
-      "]"
-    ]
-  ],
-  "folding": {
-    "markers": {
-      "start": "^\\s*;\\s*#region\\b",
-      "end": "^\\s*;\\s*#endregion\\b"
+    "comments": {
+        "lineComment": ";"
     },
-    "offSide": true
-  },
-  "onEnterRules": [
-    {
-      "beforeText": "^\\s*(section.*|\\w+:)\\s*(;.*)?$",
-      "action": {
-        "indent": "indent"
-      }
-    }
-  ]
+    "brackets": [
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ]
+    ],
+    "autoClosingPairs": [
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ],
+        [
+            "\"",
+            "\""
+        ],
+        [
+            "'",
+            "'"
+        ],
+        [
+            "`",
+            "`"
+        ]
+    ],
+    "surroundingPairs": [
+        [
+            "[",
+            "]"
+        ],
+        [
+            "(",
+            ")"
+        ],
+        [
+            "\"",
+            "\""
+        ],
+        [
+            "'",
+            "'"
+        ],
+        [
+            "`",
+            "`"
+        ]
+    ],
+    "autoCloseBefore": ";:.,=])> \n\t",
+    "colorizedBracketPairs": [
+        [
+            "(",
+            ")"
+        ],
+        [
+            "[",
+            "]"
+        ]
+    ],
+    "folding": {
+        "markers": {
+            "start": "^\\s*;\\s*#region\\b",
+            "end": "^\\s*;\\s*#endregion\\b"
+        },
+        "offSide": true
+    },
+    "onEnterRules": [
+        {
+            "beforeText": "^\\s*(section.*|\\w+:)\\s*(;.*)?$",
+            "action": {
+                "indent": "indent"
+            }
+        }
+    ]
 }
