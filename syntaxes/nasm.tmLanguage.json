@@ -10,6 +10,9 @@
     },
     {
       "include": "#x86.registers"
+    },
+    {
+      "include": "#labels"
     }
   ],
   "repository": {
@@ -26,6 +29,10 @@
       "name": "variable.language.x86",
       "comment": "x86_64 register name",
       "match": "\\b(r(8|9|1[0-5])[d|w|b]?|(al|cl|dl|bl|sil|dil|spl|bpl)|(r|e|)(ax|cx|dx|bx|si|di|sp|bp))\\b"
+    },
+    "labels": {
+      "name": "variable.label",
+      "match": "^\\s*\\w+:"
     }
   },
   "scopeName": "source.nasm"
