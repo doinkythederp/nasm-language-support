@@ -4,6 +4,8 @@ All notable changes to the "nasm-langauge-support" extension will be documented 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## 1.0.0
 
-- Initial release
+- Added syntax highlighting
+- Added auto-indentation
+- Added LSP server for diagnostics
