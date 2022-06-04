@@ -119,5 +119,9 @@
     "main": "./dist/extension.js",
     "activationEvents": [
         "onLanguage:nasm"
-    ]
+    ],
+    "author": {
+        "name": "doinkythederp"
+    },
+    "publisher": "doinkythederp"
 }
