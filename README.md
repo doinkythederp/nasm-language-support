@@ -1,6 +1,8 @@
-# nasm-langauge-support README
+# NASM Language Support
 
-This is the README for your extension "nasm-langauge-support". After writing up a brief description, we recommend including the following sections.
+This extension provides syntax highlighting and language configuration for [NASM Assembly](https://nasm.us/).
+
+<!-- TODO: demo image -->
 
 ## Features
 
