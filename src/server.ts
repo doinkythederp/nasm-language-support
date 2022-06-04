@@ -70,6 +70,14 @@ try {
     if ((e as { code: string; }).code !== 'EEXIST') throw e;
 }
 
+function spawn(command: string, args: string[]) {
+    let child = childProcess.spawn(command, args);
+    return new Promise<childProcess.ChildProcessWithoutNullStreams>((resolve, reject) => {
+        child.on('error', reject);
+        child.on('spawn', () => resolve(child));
+    });
+}
+
 async function validateAssembly(document: TextDocument) {
     connection.console.info('validating source code');
     const text = document.getText();
@@ -80,7 +88,7 @@ async function validateAssembly(document: TextDocument) {
 
     connection.console.info(`wrote source file to ${source}, spawning nasm`);
 
-    const nasm = childProcess.spawn('nasm', ['-o', path.join(temp, 'out.o'), source]);
+    const nasm = await spawn('nasm', ['-o', path.join(temp, 'out.o'), source]);
     const diagnostics: Diagnostic[] = (await parseStream(sourceFileName, nasm.stderr, connection)).map((diagnostic) => {
         const [start, end] = lineToRange(text, diagnostic.line);
         return {
