@@ -12,6 +12,21 @@ This extension provides syntax highlighting and diagnostics for assembly files (
 
 While syntax highlighting can always be used, you must have a `nasm` binary in your `PATH` to view code diagnostics.
 
+### Getting a NASM binary on Unix-like systems
+
+Your operating system might have a `nasm` package.
+
+For example:
+
+- macOS ([Homebrew](https://brew.sh/)): `brew install nasm`
+- Arch Linux: `pacman -S nasm`
+- Debian/Ubuntu: `apt-get install nasm`
+- Fedora/RPM-based: `dnf install nasm`, `yum install nasm`
+
+### Downloading a NASM binary
+
+You can also download NASM from their [website](https://nasm.us/). Find a link to the latest version and download the binary for your platform. Then, add it to a folder that's in your path, like `/usr/local/bin`.
+
 ## Extension Setting
 This extension contributes the following settings:
 
