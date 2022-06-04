@@ -31,5 +31,11 @@
                 "path": "./syntaxes/nasm.tmLanguage.json"
             }
         ]
-    }
+    },
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/doinkythederp/nasm-langauge-support.git"
+    },
+    "homepage": "https://github.com/doinkythederp/nasm-langauge-support#readme"
 }
