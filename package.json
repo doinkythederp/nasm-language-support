@@ -129,5 +129,5 @@
         "build": "esbuild ./src/extension.ts ./src/server.ts --bundle --minify --outdir=./dist --external:vscode --format=cjs --platform=node",
         "check": "tsc"
     },
-    "icon": "./images/nasm-logo.png"
+    "icon": "icon.png"
 }
