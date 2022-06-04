@@ -2,7 +2,7 @@
     "name": "nasm-langauge-support",
     "displayName": "NASM Langauge Support",
     "description": "Language features for NASM Assembly",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "engines": {
         "vscode": "^1.67.0"
     },
