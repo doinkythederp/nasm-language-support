@@ -109,7 +109,8 @@
     "homepage": "https://github.com/doinkythederp/nasm-langauge-support#readme",
     "devDependencies": {
         "@types/node": "^17.0.39",
-        "@types/vscode": "^1.67.0"
+        "@types/vscode": "^1.67.0",
+        "esbuild": "^0.14.42"
     },
     "dependencies": {
         "vscode-languageclient": "^8.0.1",
@@ -123,5 +124,9 @@
     "author": {
         "name": "doinkythederp"
     },
-    "publisher": "doinkythederp"
+    "publisher": "doinkythederp",
+    "scripts": {
+        "build": "esbuild ./src/extension.ts ./src/server.ts --bundle --minify --outdir=./dist --external:vscode --format=cjs --platform=node",
+        "check": "tsc"
+    }
 }

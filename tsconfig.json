@@ -19,8 +19,7 @@
         "types": [
             "node"
         ],
-        "outDir": "dist",
-        "incremental": true
+        "noEmit": true
     },
     "include": [
         "src/**/*.ts"
