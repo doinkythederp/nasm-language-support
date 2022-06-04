@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "lib": [
+            "ES2020"
+        ],
+        "rootDir": "src",
+        "isolatedModules": true,
+        "strict": true,
+        "exactOptionalPropertyTypes": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "types": [
+            "node"
+        ],
+        "outDir": "dist",
+        "incremental": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}

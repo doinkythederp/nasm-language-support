@@ -1,0 +1,103 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@types/node': ^17.0.39
+  '@types/vscode': ^1.67.0
+  vscode-languageclient: ^8.0.1
+  vscode-languageserver: ^8.0.1
+  vscode-languageserver-textdocument: ^1.0.5
+
+dependencies:
+  vscode-languageclient: 8.0.1
+  vscode-languageserver: 8.0.1
+  vscode-languageserver-textdocument: 1.0.5
+
+devDependencies:
+  '@types/node': 17.0.39
+  '@types/vscode': 1.67.0
+
+packages:
+
+  /@types/node/17.0.39:
+    resolution: {integrity: sha512-JDU3YLlnPK3WDao6/DlXLOgSNpG13ct+CwIO17V8q0/9fWJyeMJJ/VyZ1lv8kDprihvZMydzVwf0tQOqGiY2Nw==}
+    dev: true
+
+  /@types/vscode/1.67.0:
+    resolution: {integrity: sha512-GH8BDf8cw9AC9080uneJfulhSa7KHSMI2s/CyKePXoGNos9J486w2V4YKoeNUqIEkW4hKoEAWp6/cXTwyGj47g==}
+    dev: true
+
+  /balanced-match/1.0.2:
+    resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+    dev: false
+
+  /brace-expansion/1.1.11:
+    resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
+    dependencies:
+      balanced-match: 1.0.2
+      concat-map: 0.0.1
+    dev: false
+
+  /concat-map/0.0.1:
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    dev: false
+
+  /lru-cache/6.0.0:
+    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
+    engines: {node: '>=10'}
+    dependencies:
+      yallist: 4.0.0
+    dev: false
+
+  /minimatch/3.1.2:
+    resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
+    dependencies:
+      brace-expansion: 1.1.11
+    dev: false
+
+  /semver/7.3.7:
+    resolution: {integrity: sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: false
+
+  /vscode-jsonrpc/8.0.1:
+    resolution: {integrity: sha512-N/WKvghIajmEvXpatSzvTvOIz61ZSmOSa4BRA4pTLi+1+jozquQKP/MkaylP9iB68k73Oua1feLQvH3xQuigiQ==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
+  /vscode-languageclient/8.0.1:
+    resolution: {integrity: sha512-9XoE+HJfaWvu7Y75H3VmLo5WLCtsbxEgEhrLPqwt7eyoR49lUIyyrjb98Yfa50JCMqF2cePJAEVI6oe2o1sIhw==}
+    engines: {vscode: ^1.67.0}
+    dependencies:
+      minimatch: 3.1.2
+      semver: 7.3.7
+      vscode-languageserver-protocol: 3.17.1
+    dev: false
+
+  /vscode-languageserver-protocol/3.17.1:
+    resolution: {integrity: sha512-BNlAYgQoYwlSgDLJhSG+DeA8G1JyECqRzM2YO6tMmMji3Ad9Mw6AW7vnZMti90qlAKb0LqAlJfSVGEdqMMNzKg==}
+    dependencies:
+      vscode-jsonrpc: 8.0.1
+      vscode-languageserver-types: 3.17.1
+    dev: false
+
+  /vscode-languageserver-textdocument/1.0.5:
+    resolution: {integrity: sha512-1ah7zyQjKBudnMiHbZmxz5bYNM9KKZYz+5VQLj+yr8l+9w3g+WAhCkUkWbhMEdC5u0ub4Ndiye/fDyS8ghIKQg==}
+    dev: false
+
+  /vscode-languageserver-types/3.17.1:
+    resolution: {integrity: sha512-K3HqVRPElLZVVPtMeKlsyL9aK0GxGQpvtAUTfX4k7+iJ4mc1M+JM+zQwkgGy2LzY0f0IAafe8MKqIkJrxfGGjQ==}
+    dev: false
+
+  /vscode-languageserver/8.0.1:
+    resolution: {integrity: sha512-sn7SjBwWm3OlmLtgg7jbM0wBULppyL60rj8K5HF0ny/MzN+GzPBX1kCvYdybhl7UW63V5V5tRVnyB8iwC73lSQ==}
+    hasBin: true
+    dependencies:
+      vscode-languageserver-protocol: 3.17.1
+    dev: false
+
+  /yallist/4.0.0:
+    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+    dev: false

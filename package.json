@@ -2,7 +2,7 @@
     "name": "nasm-langauge-support",
     "displayName": "NASM Langauge Support",
     "description": "Language features for NASM Assembly",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.67.0"
     },
@@ -30,12 +30,98 @@
                 "scopeName": "source.nasm",
                 "path": "./syntaxes/nasm.tmLanguage.json"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "NASM Assembler",
+            "properties": {
+                "nasm.validate": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If enabled, NASM Language Support will validate your assembly files. This is dependent on you having a NASM executable in your PATH."
+                },
+                "nasm.outputFormat": {
+                    "scope": "resource",
+                    "type": "string",
+                    "enum": [
+                        "bin",
+                        "ith",
+                        "srec",
+                        "aout",
+                        "aoutb",
+                        "coff",
+                        "elf32",
+                        "elf64",
+                        "elfx32",
+                        "as86",
+                        "obj",
+                        "win32",
+                        "win64",
+                        "ieee",
+                        "macho32",
+                        "macho64",
+                        "dbg"
+                    ],
+                    "enumDescriptions": [
+                        "Flat raw binary (MS-DOS, embedded, ...)",
+                        "Intel Hex encoded flat binary",
+                        "Motorola S-records encoded flat binary",
+                        "Linux a.out",
+                        "NetBSD/FreeBSD a.out",
+                        "COFF (i386) (DJGPP, some Unix variants)",
+                        "ELF32 (i386) (Linux, most Unix variants)",
+                        "ELF64 (x86-64) (Linux, most Unix variants)",
+                        "ELFx32 (ELF32 for x86-64) (Linux)",
+                        "as86 (bin86/dev86 toolchain)",
+                        "Intel/Microsoft OMF (MS-DOS, OS/2, Win16)",
+                        "Microsoft extended COFF for Win32 (i386)",
+                        "Microsoft extended COFF for Win64 (x86-64)",
+                        "IEEE-695 (LADsoft variant) object file format",
+                        "Mach-O i386 (Mach, including MacOS X and variants)",
+                        "Mach-O x86-64 (Mach, including MacOS X and variants)",
+                        "Trace of all info passed to output stage"
+                    ],
+                    "default": "bin",
+                    "description": "The executable output format to assemble for"
+                },
+                "nasm.reportWarnings": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If disabled, validation warnings will be ignored"
+                },
+                "nasm.extraFlags": {
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Extra flags to add to `nasm` when validating source code"
+                }
+            }
+        }
     },
     "license": "ISC",
     "repository": {
         "type": "git",
         "url": "https://github.com/doinkythederp/nasm-langauge-support.git"
     },
-    "homepage": "https://github.com/doinkythederp/nasm-langauge-support#readme"
+    "homepage": "https://github.com/doinkythederp/nasm-langauge-support#readme",
+    "devDependencies": {
+        "@types/node": "^17.0.39",
+        "@types/vscode": "^1.67.0"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^8.0.1",
+        "vscode-languageserver": "^8.0.1",
+        "vscode-languageserver-textdocument": "^1.0.5"
+    },
+    "main": "./dist/extension.js",
+    "activationEvents": [
+        "onLanguage:nasm"
+    ],
+    "author": {
+        "name": "doinkythederp"
+    },
+    "publisher": "doinkythederp"
 }
