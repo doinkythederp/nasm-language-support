@@ -1,67 +1,29 @@
 # NASM Language Support
 
-This extension provides syntax highlighting and language configuration for [NASM Assembly](https://nasm.us/).
-
-<!-- TODO: demo image -->
+Language features for [NASM Assembly](https://nasm.us/).
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension provides syntax highlighting and diagnostics for assembly files (`.asm`, `.nasm`). It can use your system's `nasm` executable to detect compile-time errors and warnings such as invalid syntax or likely incorrect code. It also features auto-indenting to make your code easier to understand.
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![Demo featuring syntax highlighting and error detection](images/demo.png)
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+While syntax highlighting can always be used, you must have a `nasm` binary in your `PATH` to view code diagnostics.
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
+## Extension Setting
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+* `nasm.validate`: If enabled, NASM Language Support will validate your assembly files. This is dependent on you having a `nasm` executable in your `PATH`.
+* `nasm.outputFormat`: Changes the executable output format to assemble for. This is neccesary to provide correct errors based on your build target.
+* `nasm.reportWarnings`: If disabled, validation warnings will be hidden during validation.
+* `nasm.extraFlags`: Extra flags (for example, `-w+all`) that will be added add to `nasm` when validating assembly files
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Added syntax highlighting
+- Added auto-indentation
+- Added LSP server for diagnostics
