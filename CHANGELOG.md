@@ -1,8 +1,17 @@
 # Change Log
 
-All notable changes to the "nasm-langauge-support" extension will be documented in this file.
+All notable changes to the "nasm-language-support" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+
+## [Unreleased]
+
+- Added the `.s` extension
+- Fixed a typo in the extension name 💀
+
+## 1.0.2
+
+- Added an extension icon
 
 ## 1.0.1
 
