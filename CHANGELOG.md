@@ -4,7 +4,7 @@ All notable changes to the "nasm-language-support" extension will be documented 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## 1.1.0
 
 - Added the `.s` extension
 - Fixed a typo in the extension name 💀
