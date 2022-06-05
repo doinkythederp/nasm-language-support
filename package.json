@@ -1,6 +1,6 @@
 {
-    "name": "nasm-langauge-support",
-    "displayName": "NASM Langauge Support",
+    "name": "nasm-language-support",
+    "displayName": "NASM Language Support",
     "description": "Language features for NASM Assembly",
     "version": "1.0.2",
     "engines": {
@@ -104,9 +104,9 @@
     "license": "ISC",
     "repository": {
         "type": "git",
-        "url": "https://github.com/doinkythederp/nasm-langauge-support.git"
+        "url": "https://github.com/doinkythederp/nasm-language-support.git"
     },
-    "homepage": "https://github.com/doinkythederp/nasm-langauge-support#readme",
+    "homepage": "https://github.com/doinkythederp/nasm-language-support#readme",
     "devDependencies": {
         "@types/node": "^17.0.39",
         "@types/vscode": "^1.67.0",
