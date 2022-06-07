@@ -4,6 +4,10 @@ All notable changes to the "nasm-language-support" extension will be documented 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.1.1
+
+- Fixed a bug that caused the extension not to work on Windows
+
 ## 1.1.0
 
 - Added the `.s` extension
