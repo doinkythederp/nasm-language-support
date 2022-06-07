@@ -16,7 +16,7 @@ export interface Diagnostic {
     message: string;
 }
 
-const linePattern = /:(\d+): (\w+): (.+)$/;
+const linePattern = /:(\d+): (\w+): (.+)\r?$/;
 
 export async function parseStream(filename: string, stream: AsyncIterable<string>, connection: ReturnType<typeof createConnection>): Promise<Diagnostic[]> {
     connection.console.info(`Parsing diagnostics from ${filename}`);
