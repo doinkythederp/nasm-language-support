@@ -7,6 +7,7 @@ Language features for [NASM Assembly](https://nasm.us/).
 This extension provides syntax highlighting and diagnostics for assembly files (`.asm`, `.nasm`, `.s`). It can use your system's `nasm` executable to detect compile-time errors and warnings such as invalid syntax or likely incorrect code. It also features auto-indenting to make your code easier to understand.
 
 ![Demo featuring syntax highlighting and error detection](images/demo.png)
+Shown above: NASM Language Support + [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens), Theme: [Github Dark Default](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme)
 
 ## Requirements
 
