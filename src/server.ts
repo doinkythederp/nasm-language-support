@@ -34,7 +34,9 @@ let hasConfigurationCapability = false;
 connection.onInitialize((params: InitializeParams) => {
     const { capabilities } = params;
 
-    hasWorkspaceFolderCapability = Boolean(capabilities.workspace?.workspaceFolders);
+    hasWorkspaceFolderCapability = Boolean(
+        capabilities.workspace?.workspaceFolders
+    );
     hasConfigurationCapability = Boolean(capabilities.workspace?.configuration);
 
     const result: InitializeResult = {
@@ -64,6 +66,7 @@ interface Settings {
     validate: boolean;
     outputFormat: string;
     reportWarnings: boolean;
+    nasmPath: string;
     extraFlags: string[];
 }
 
@@ -71,7 +74,8 @@ const defaultSettings: Settings = {
     validate: true,
     outputFormat: 'bin',
     reportWarnings: true,
-    extraFlags: []
+    extraFlags: [],
+    nasmPath: 'nasm'
 };
 let globalSettings: Settings = defaultSettings;
 
@@ -93,15 +97,17 @@ const temp = path.join(tmpdir(), 'nasmValidator');
 try {
     mkdirSync(temp);
 } catch (e) {
-    if ((e as { code: string; }).code !== 'EEXIST') throw e;
+    if ((e as { code: string }).code !== 'EEXIST') throw e;
 }
 
 function spawn(command: string, args: string[]) {
     let child = childProcess.spawn(command, args);
-    return new Promise<childProcess.ChildProcessWithoutNullStreams>((resolve, reject) => {
-        child.on('error', reject);
-        child.on('spawn', () => resolve(child));
-    });
+    return new Promise<childProcess.ChildProcessWithoutNullStreams>(
+        (resolve, reject) => {
+            child.on('error', reject);
+            child.on('spawn', () => resolve(child));
+        }
+    );
 }
 
 async function getDocumentSettings(uri: string): Promise<Settings> {
@@ -125,7 +131,11 @@ async function getDocumentSettings(uri: string): Promise<Settings> {
 async function validateAssembly(document: TextDocument) {
     connection.console.info('validating source code');
     const settings = await getDocumentSettings(document.uri);
-    if (!settings.validate) return await connection.sendDiagnostics({ uri: document.uri, diagnostics: [] });;
+    if (!settings.validate)
+        return await connection.sendDiagnostics({
+            uri: document.uri,
+            diagnostics: []
+        });
 
     const text = document.getText();
 
@@ -135,9 +145,20 @@ async function validateAssembly(document: TextDocument) {
 
     connection.console.info(`wrote source file to ${source}, spawning nasm`);
 
-    const nasm = await spawn('nasm', ['-o', path.join(temp, 'out.o'), '-f', settings.outputFormat, ...settings.extraFlags, source]);
-    const diagnostics: Diagnostic[] = (await parseStream(sourceFileName, nasm.stderr, connection))
-        .filter((diagnostic) => !diagnostic.isWarning || settings.reportWarnings)
+    const nasm = await spawn(settings.nasmPath, [
+        '-o',
+        path.join(temp, 'out.o'),
+        '-f',
+        settings.outputFormat,
+        ...settings.extraFlags,
+        source
+    ]);
+    const diagnostics: Diagnostic[] = (
+        await parseStream(sourceFileName, nasm.stderr, connection)
+    )
+        .filter(
+            (diagnostic) => !diagnostic.isWarning || settings.reportWarnings
+        )
         .map((diagnostic) => {
             const [start, end] = lineToRange(text, diagnostic.line);
             return {
@@ -146,25 +167,31 @@ async function validateAssembly(document: TextDocument) {
                     start: document.positionAt(start),
                     end: document.positionAt(end)
                 },
-                severity: diagnostic.isWarning ? DiagnosticSeverity.Warning : DiagnosticSeverity.Error,
+                severity: diagnostic.isWarning
+                    ? DiagnosticSeverity.Warning
+                    : DiagnosticSeverity.Error,
                 source: 'nasm'
             };
         });
 
-    connection.console.log(`finished calculating ${diagnostics.length} diagnostics, sending`);
+    connection.console.log(
+        `finished calculating ${diagnostics.length} diagnostics, sending`
+    );
 
     await connection.sendDiagnostics({ uri: document.uri, diagnostics });
 }
 
 connection.onDidChangeConfiguration((change) => {
-    if (hasConfigurationCapability)
-        documentSettings.clear();
-    else
-        globalSettings = change.settings.nasm ?? defaultSettings;
+    if (hasConfigurationCapability) documentSettings.clear();
+    else globalSettings = change.settings.nasm ?? defaultSettings;
 
-    connection.console.info('Revalidating all documents due to configuration change');
+    connection.console.info(
+        'Revalidating all documents due to configuration change'
+    );
     for (const document of documents.all()) {
-        validateAssembly(document).catch((e) => connection.console.error(String(e)));
+        validateAssembly(document).catch((e) =>
+            connection.console.error(String(e))
+        );
     }
 });
 
@@ -173,7 +200,9 @@ documents.onDidClose((event) => {
 });
 
 const checkChange = (change: TextDocumentChangeEvent<TextDocument>) => {
-    validateAssembly(change.document).catch((e) => connection.console.error(String(e)));
+    validateAssembly(change.document).catch((e) =>
+        connection.console.error(String(e))
+    );
 };
 
 documents.onDidSave(checkChange);
