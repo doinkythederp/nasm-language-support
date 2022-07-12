@@ -98,12 +98,12 @@
                         "type": "string"
                     },
                     "description": "Extra flags to add to `nasm` when validating source code"
+                },
+                "nasm.checkOnType": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If enabled, validates assembly files as you type instead of after you save the file."
                 }
-            },
-            "nasm.checkOnType": {
-                "type": "boolean",
-                "default": false,
-                "description": "If enabled, validates assembly files as you type instead of after you save the file."
             }
         }
     },
