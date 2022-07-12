@@ -45,3 +45,4 @@ This extension contributes the following settings:
 - `nasm.outputFormat`: Changes the executable output format to assemble for. This is neccesary to provide correct errors based on your build target.
 - `nasm.reportWarnings`: If disabled, warnings will be supressed.
 - `nasm.extraFlags`: Extra flags (for example, `-w+all`) that will be appended when running `nasm` when validating assembly files
+- `nasm.nasmPath`: The name or path of the nasm executable (e.g. `/opt/homebrew/bin/nasm`, `/usr/local/bin/nasm`)

@@ -91,6 +91,12 @@
                     "default": true,
                     "description": "If disabled, validation warnings will be ignored"
                 },
+                "nasm.nasmPath": {
+                    "title": "NASM Path",
+                    "type": "string",
+                    "default": "nasm",
+                    "description": "The name or path of the nasm executable (e.g. `/opt/homebrew/bin/nasm`, `/usr/local/bin/nasm`)"
+                },
                 "nasm.extraFlags": {
                     "type": "array",
                     "default": [],

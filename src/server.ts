@@ -62,6 +62,7 @@ interface Settings {
     validate: boolean;
     outputFormat: string;
     reportWarnings: boolean;
+    nasmPath: string;
     extraFlags: string[];
     checkOnType: boolean;
 }
@@ -71,7 +72,8 @@ const defaultSettings: Settings = {
     outputFormat: 'bin',
     reportWarnings: true,
     extraFlags: [],
-    checkOnType: false
+    checkOnType: false,
+    nasmPath: 'nasm'
 };
 let globalSettings: Settings = defaultSettings;
 
@@ -140,7 +142,7 @@ async function validateAssembly(document: TextDocument, settings: Settings) {
 
     connection.console.info(`wrote source file to ${source}, spawning nasm`);
 
-    const nasm = await spawn('nasm', [
+    const nasm = await spawn(settings.nasmPath, [
         '-o',
         path.join(temp, 'out.o'),
         '-f',
