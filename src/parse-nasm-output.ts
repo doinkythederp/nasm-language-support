@@ -1,24 +1,26 @@
 import * as assert from 'node:assert/strict';
 import { createConnection } from 'vscode-languageserver/node';
 
-
 enum ReadStage {
     Filename,
     LineNumber,
     Severity,
-    Message
+    Message,
 }
 
-
 export interface Diagnostic {
-    line: number,
-    isWarning: boolean,
+    line: number;
+    isWarning: boolean;
     message: string;
 }
 
 const linePattern = /:(\d+): (\w+): (.+)\r?$/;
 
-export async function parseStream(filename: string, stream: AsyncIterable<string>, connection: ReturnType<typeof createConnection>): Promise<Diagnostic[]> {
+export async function parseStream(
+    filename: string,
+    stream: AsyncIterable<string>,
+    connection: ReturnType<typeof createConnection>
+): Promise<Diagnostic[]> {
     connection.console.info(`Parsing diagnostics from ${filename}`);
     const diagnostics: Diagnostic[] = [];
 
@@ -41,15 +43,17 @@ export async function parseStream(filename: string, stream: AsyncIterable<string
             const diagnostic: Diagnostic = {
                 line: Number(lineNumber),
                 isWarning: severity === 'warning',
-                message: message!
+                message: message!,
             };
 
-            connection.console.info(`Parsed ${severity} diagnostic on line ${lineNumber} with message "${message}"`);
+            connection.console.info(
+                `Parsed ${severity} diagnostic on line ${lineNumber} with message "${message}"`
+            );
 
             diagnostics.push({
                 line: Number(lineNumber),
                 isWarning: severity === 'warning',
-                message: message!
+                message: message!,
             });
         }
     }
