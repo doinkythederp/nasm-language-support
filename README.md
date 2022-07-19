@@ -46,3 +46,4 @@ This extension contributes the following settings:
 - `nasm.reportWarnings`: If disabled, warnings will be supressed.
 - `nasm.extraFlags`: Extra flags (for example, `-w+all`) that will be appended when running `nasm` when validating assembly files
 - `nasm.nasmPath`: The name or path of the nasm executable (e.g. `/opt/homebrew/bin/nasm`, `/usr/local/bin/nasm`)
+- `nasm.checkOnType`: If enabled, validates assembly files as you type rather than after saving.bb

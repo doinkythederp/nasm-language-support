@@ -4,6 +4,11 @@ All notable changes to the "nasm-language-support" extension will be documented 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.1.2
+
+- Added the `nasm.nasmPath` setting which allows you to use a custom `nasm` binary rather than one in your `PATH` environment variable
+- Added the `nasm.checkOnType` setting which checks your code as you type rather than after you save.
+
 ## 1.1.1
 
 - Fixed a bug that caused the extension not to work on Windows

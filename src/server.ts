@@ -6,9 +6,6 @@ import {
     ProposedFeatures,
     InitializeParams,
     DidChangeConfigurationNotification,
-    CompletionItem,
-    CompletionItemKind,
-    TextDocumentPositionParams,
     TextDocumentSyncKind,
     InitializeResult,
     TextDocumentChangeEvent,
@@ -20,7 +17,6 @@ import * as childProcess from 'node:child_process';
 import { tmpdir } from 'node:os';
 import * as path from 'node:path';
 import { writeFile } from 'node:fs/promises';
-import * as assert from 'node:assert/strict';
 
 import { parseStream } from './parse-nasm-output';
 import { mkdirSync } from 'node:fs';
@@ -68,6 +64,7 @@ interface Settings {
     reportWarnings: boolean;
     nasmPath: string;
     extraFlags: string[];
+    checkOnType: boolean;
 }
 
 const defaultSettings: Settings = {
@@ -75,6 +72,7 @@ const defaultSettings: Settings = {
     outputFormat: 'bin',
     reportWarnings: true,
     extraFlags: [],
+    checkOnType: false,
     nasmPath: 'nasm',
 };
 let globalSettings: Settings = defaultSettings;
@@ -128,9 +126,8 @@ async function getDocumentSettings(uri: string): Promise<Settings> {
     return await settings;
 }
 
-async function validateAssembly(document: TextDocument) {
+async function validateAssembly(document: TextDocument, settings: Settings) {
     connection.console.info('validating source code');
-    const settings = await getDocumentSettings(document.uri);
     if (!settings.validate)
         return await connection.sendDiagnostics({
             uri: document.uri,
@@ -189,9 +186,10 @@ connection.onDidChangeConfiguration((change) => {
         'Revalidating all documents due to configuration change'
     );
     for (const document of documents.all()) {
-        validateAssembly(document).catch((e) =>
-            connection.console.error(String(e))
-        );
+        (async () => {
+            const settings = await getDocumentSettings(document.uri);
+            await validateAssembly(document, settings);
+        })().catch((e) => connection.console.error(String(e)));
     }
 });
 
@@ -199,14 +197,20 @@ documents.onDidClose((event) => {
     documentSettings.delete(event.document.uri);
 });
 
-const checkChange = (change: TextDocumentChangeEvent<TextDocument>) => {
-    validateAssembly(change.document).catch((e) =>
-        connection.console.error(String(e))
-    );
+const checkChange = (
+    isType: boolean,
+    change: TextDocumentChangeEvent<TextDocument>
+) => {
+    (async () => {
+        const settings = await getDocumentSettings(change.document.uri);
+        if (!isType || settings.checkOnType)
+            await validateAssembly(change.document, settings);
+    })().catch((e) => connection.console.error(String(e)));
 };
 
-documents.onDidSave(checkChange);
-documents.onDidOpen(checkChange);
+documents.onDidSave(checkChange.bind(null, false));
+documents.onDidOpen(checkChange.bind(null, false));
+documents.onDidChangeContent(checkChange.bind(null, true));
 
 documents.listen(connection);
 connection.listen();
