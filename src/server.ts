@@ -6,12 +6,9 @@ import {
     ProposedFeatures,
     InitializeParams,
     DidChangeConfigurationNotification,
-    CompletionItem,
-    CompletionItemKind,
-    TextDocumentPositionParams,
     TextDocumentSyncKind,
     InitializeResult,
-    TextDocumentChangeEvent
+    TextDocumentChangeEvent,
 } from 'vscode-languageserver/node';
 
 import { TextDocument } from 'vscode-languageserver-textdocument';
@@ -20,7 +17,6 @@ import * as childProcess from 'node:child_process';
 import { tmpdir } from 'node:os';
 import * as path from 'node:path';
 import { writeFile } from 'node:fs/promises';
-import * as assert from 'node:assert/strict';
 
 import { parseStream } from './parse-nasm-output';
 import { mkdirSync } from 'node:fs';
@@ -41,14 +37,14 @@ connection.onInitialize((params: InitializeParams) => {
 
     const result: InitializeResult = {
         capabilities: {
-            textDocumentSync: TextDocumentSyncKind.Incremental
-        }
+            textDocumentSync: TextDocumentSyncKind.Incremental,
+        },
     };
     if (hasWorkspaceFolderCapability) {
         result.capabilities.workspace = {
             workspaceFolders: {
-                supported: true
-            }
+                supported: true,
+            },
         };
     }
 
@@ -58,7 +54,7 @@ connection.onInitialize((params: InitializeParams) => {
 connection.onInitialized(() => {
     if (hasConfigurationCapability)
         connection.client.register(DidChangeConfigurationNotification.type, {
-            section: 'nasm'
+            section: 'nasm',
         });
 });
 
@@ -68,6 +64,7 @@ interface Settings {
     reportWarnings: boolean;
     nasmPath: string;
     extraFlags: string[];
+    checkOnType: boolean;
 }
 
 const defaultSettings: Settings = {
@@ -75,7 +72,8 @@ const defaultSettings: Settings = {
     outputFormat: 'bin',
     reportWarnings: true,
     extraFlags: [],
-    nasmPath: 'nasm'
+    checkOnType: false,
+    nasmPath: 'nasm',
 };
 let globalSettings: Settings = defaultSettings;
 
@@ -122,19 +120,18 @@ async function getDocumentSettings(uri: string): Promise<Settings> {
 
     const settings = connection.workspace.getConfiguration({
         scopeUri: uri,
-        section: 'nasm'
+        section: 'nasm',
     });
     documentSettings.set(uri, settings);
     return await settings;
 }
 
-async function validateAssembly(document: TextDocument) {
+async function validateAssembly(document: TextDocument, settings: Settings) {
     connection.console.info('validating source code');
-    const settings = await getDocumentSettings(document.uri);
     if (!settings.validate)
         return await connection.sendDiagnostics({
             uri: document.uri,
-            diagnostics: []
+            diagnostics: [],
         });
 
     const text = document.getText();
@@ -151,7 +148,7 @@ async function validateAssembly(document: TextDocument) {
         '-f',
         settings.outputFormat,
         ...settings.extraFlags,
-        source
+        source,
     ]);
     const diagnostics: Diagnostic[] = (
         await parseStream(sourceFileName, nasm.stderr, connection)
@@ -165,12 +162,12 @@ async function validateAssembly(document: TextDocument) {
                 message: diagnostic.message,
                 range: {
                     start: document.positionAt(start),
-                    end: document.positionAt(end)
+                    end: document.positionAt(end),
                 },
                 severity: diagnostic.isWarning
                     ? DiagnosticSeverity.Warning
                     : DiagnosticSeverity.Error,
-                source: 'nasm'
+                source: 'nasm',
             };
         });
 
@@ -189,9 +186,10 @@ connection.onDidChangeConfiguration((change) => {
         'Revalidating all documents due to configuration change'
     );
     for (const document of documents.all()) {
-        validateAssembly(document).catch((e) =>
-            connection.console.error(String(e))
-        );
+        (async () => {
+            const settings = await getDocumentSettings(document.uri);
+            await validateAssembly(document, settings);
+        })().catch((e) => connection.console.error(String(e)));
     }
 });
 
@@ -199,14 +197,20 @@ documents.onDidClose((event) => {
     documentSettings.delete(event.document.uri);
 });
 
-const checkChange = (change: TextDocumentChangeEvent<TextDocument>) => {
-    validateAssembly(change.document).catch((e) =>
-        connection.console.error(String(e))
-    );
+const checkChange = (
+    isType: boolean,
+    change: TextDocumentChangeEvent<TextDocument>
+) => {
+    (async () => {
+        const settings = await getDocumentSettings(change.document.uri);
+        if (!isType || settings.checkOnType)
+            await validateAssembly(change.document, settings);
+    })().catch((e) => connection.console.error(String(e)));
 };
 
-documents.onDidSave(checkChange);
-documents.onDidOpen(checkChange);
+documents.onDidSave(checkChange.bind(null, false));
+documents.onDidOpen(checkChange.bind(null, false));
+documents.onDidChangeContent(checkChange.bind(null, true));
 
 documents.listen(connection);
 connection.listen();
