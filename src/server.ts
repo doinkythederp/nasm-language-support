@@ -8,7 +8,7 @@ import {
     DidChangeConfigurationNotification,
     TextDocumentSyncKind,
     InitializeResult,
-    TextDocumentChangeEvent
+    TextDocumentChangeEvent,
 } from 'vscode-languageserver/node';
 
 import { TextDocument } from 'vscode-languageserver-textdocument';
@@ -37,14 +37,14 @@ connection.onInitialize((params: InitializeParams) => {
 
     const result: InitializeResult = {
         capabilities: {
-            textDocumentSync: TextDocumentSyncKind.Incremental
-        }
+            textDocumentSync: TextDocumentSyncKind.Incremental,
+        },
     };
     if (hasWorkspaceFolderCapability) {
         result.capabilities.workspace = {
             workspaceFolders: {
-                supported: true
-            }
+                supported: true,
+            },
         };
     }
 
@@ -54,7 +54,7 @@ connection.onInitialize((params: InitializeParams) => {
 connection.onInitialized(() => {
     if (hasConfigurationCapability)
         connection.client.register(DidChangeConfigurationNotification.type, {
-            section: 'nasm'
+            section: 'nasm',
         });
 });
 
@@ -73,7 +73,7 @@ const defaultSettings: Settings = {
     reportWarnings: true,
     extraFlags: [],
     checkOnType: false,
-    nasmPath: 'nasm'
+    nasmPath: 'nasm',
 };
 let globalSettings: Settings = defaultSettings;
 
@@ -120,7 +120,7 @@ async function getDocumentSettings(uri: string): Promise<Settings> {
 
     const settings = connection.workspace.getConfiguration({
         scopeUri: uri,
-        section: 'nasm'
+        section: 'nasm',
     });
     documentSettings.set(uri, settings);
     return await settings;
@@ -131,7 +131,7 @@ async function validateAssembly(document: TextDocument, settings: Settings) {
     if (!settings.validate)
         return await connection.sendDiagnostics({
             uri: document.uri,
-            diagnostics: []
+            diagnostics: [],
         });
 
     const text = document.getText();
@@ -148,7 +148,7 @@ async function validateAssembly(document: TextDocument, settings: Settings) {
         '-f',
         settings.outputFormat,
         ...settings.extraFlags,
-        source
+        source,
     ]);
     const diagnostics: Diagnostic[] = (
         await parseStream(sourceFileName, nasm.stderr, connection)
@@ -162,12 +162,12 @@ async function validateAssembly(document: TextDocument, settings: Settings) {
                 message: diagnostic.message,
                 range: {
                     start: document.positionAt(start),
-                    end: document.positionAt(end)
+                    end: document.positionAt(end),
                 },
                 severity: diagnostic.isWarning
                     ? DiagnosticSeverity.Warning
                     : DiagnosticSeverity.Error,
-                source: 'nasm'
+                source: 'nasm',
             };
         });
 

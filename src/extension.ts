@@ -5,9 +5,8 @@ import {
     LanguageClientOptions,
     NodeModule,
     ServerOptions,
-    TransportKind
+    TransportKind,
 } from 'vscode-languageclient/node';
-
 
 let client: LanguageClient;
 export async function activate(ctx: ExtensionContext) {
@@ -15,18 +14,18 @@ export async function activate(ctx: ExtensionContext) {
 
     const run: NodeModule = {
         module: serverPath,
-        transport: TransportKind.ipc
+        transport: TransportKind.ipc,
     };
     const serverOpts: ServerOptions = {
         run,
         debug: {
             ...run,
-            options: { execArgv: ['--nolazy', '--inspect=6009'] }
-        }
+            options: { execArgv: ['--nolazy', '--inspect=6009'] },
+        },
     };
 
     const clientOpts: LanguageClientOptions = {
-        documentSelector: [{ scheme: 'file', language: 'nasm' }]
+        documentSelector: [{ scheme: 'file', language: 'nasm' }],
     };
 
     client = new LanguageClient(
