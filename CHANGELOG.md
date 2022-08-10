@@ -4,7 +4,7 @@ All notable changes to the "nasm-language-support" extension will be documented 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## Unreleased
+## 1.1.3
 
 - Added syntax highlighting for uppercase keywords such as `EXTERN`, `GLOBAL`, `MOV`, etc.
 
