@@ -109,7 +109,7 @@
                 {
                     "name": "variable.language.x86",
                     "comment": "x86_64 register name",
-                    "match": "\\b((r(8|9|1[0-5])[d|w|b]?|(al|cl|dl|bl|sil|dil|spl|bpl)|(r|e|)(ax|cx|dx|bx|si|di|sp|bp))|(R(8|9|1[0-5])[D|W|B]?|(AL|CL|DL|BL|SIL|DIL|SPL|BPL)|(R|E|)(AX|CX|DX|BX|SI|DI|SP|BP)))\\b"
+                    "match": "\\b((r(8|9|1[0-5])[d|w|b]?|(ah|al|bh|cl|ch|cs|dl|dh|ds|es|fs|gs|ss|bl|sil|dil|spl|bpl)|(r|e|)(ax|cx|dx|bx|si|di|sp|bp|ip|flags))|(R(8|9|1[0-5])[D|W|B]?|(AH|AL|BH|CL|CH|CS|DL|DH|DS|ES|FS|GS|SS|BL|SIL|DIL|SPL|BPL)|(R|E|)(AX|CX|DX|BX|SI|DI|SP|BP|IP|FLAGS)))\\b"
                 },
                 {
                     "name": "variable.language.nasm",
