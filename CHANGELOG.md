@@ -1,8 +1,9 @@
 # Change Log
 
-All notable changes to the "nasm-language-support" extension will be documented in this file.
+## 1.1.4
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Added syntax highlighting for some missing instructions and registers
+- Added a warning about Homebrew to README.md
 
 ## 1.1.3
 
