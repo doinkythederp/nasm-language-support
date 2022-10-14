@@ -96,7 +96,7 @@
                 },
                 {
                     "name": "keyword.control.psuedoInstruction",
-                    "match": "\\b(((d|res)[bwdqtoyz]|equ|times)|((D|RES)[BWDQTOYZ]|EQU|TIMES))\\b"
+                    "match": "\\b(uppercase|import|export|(d|res)[bwdqtoyz]|times|group|near|weak|far|org|equ)|(UPPERCASE|IMPORT|EXPORT|(D|RES)[BWDQTOYZ]|TIMES|GROUP|NEAR|WEAK|FAR|ORG|EQU)\\b"
                 },
                 {
                     "name": "keyword.operator",

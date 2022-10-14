@@ -28,7 +28,7 @@ Your operating system might have a `nasm` package.
 
 For example:
 
-- macOS ([Homebrew](https://brew.sh/)): `brew install nasm`
+- macOS ([Homebrew](https://brew.sh/)): `brew install nasm` [^1]
 - Arch Linux: `pacman -S nasm`
 - Debian/Ubuntu: `apt-get install nasm`
 - Fedora/RPM-based: `dnf install nasm`, `yum install nasm`
@@ -47,3 +47,6 @@ This extension contributes the following settings:
 - `nasm.extraFlags`: Extra flags (for example, `-w+all`) that will be appended when running `nasm` when validating assembly files
 - `nasm.nasmPath`: The name or path of the nasm executable (e.g. `/opt/homebrew/bin/nasm`, `/usr/local/bin/nasm`)
 - `nasm.checkOnType`: If enabled, validates assembly files as you type rather than after saving.bb
+
+[^1]:
+    You may need to add set the `nasm.nasmPath` option to `/opt/homebrew/bin/nasm` for the extension to work properly.
