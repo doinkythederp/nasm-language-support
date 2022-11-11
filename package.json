@@ -20,7 +20,8 @@
                 "extensions": [
                     ".asm",
                     ".nasm",
-                    ".s"
+                    ".s",
+                    ".inc"
                 ],
                 "configuration": "./language-configuration.json"
             }
